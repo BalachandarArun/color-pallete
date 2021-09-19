@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container
+        {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type="text"]
+        {
+            width: 40px;
+        }
+        input[type="range"]
+        {
+            width: 300px;
+        }
+        #color_box
+        {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            border: 1px solid black;
+        }
+        body
+        {
+            background-color: bisque;
+        }
+    </style>
+    <script>
+        let R = 255, G = 255, B = 255; 
+        function fn1(Rvalue) 
+        {
+            R = Rvalue;
+            // console.log(R)
+            document.getElementById("color_box").style.backgroundColor = "rgb(" +R+ "," +G+ "," +B+ ")";
+            document.getElementById("RValue").value = R
+            document.getElementById("R_range").value = R
+            document.getElementById("display").innerHTML = "rgb(" +R+ "," +G+ "," +B+ ")";
+
+        }
+        function fn2(Gvalue) 
+        {
+            G = Gvalue
+            document.getElementById("color_box").style.backgroundColor = "rgb(" +R+ "," +G+ "," +B+ ")";
+            document.getElementById("GValue").value = G
+            document.getElementById("G_range").value = G
+            document.getElementById("display").innerHTML = "rgb(" +R+ "," +G+ "," +B+ ")";
+
+        }
+        function fn3(Bvalue) 
+        {
+            B = Bvalue
+            document.getElementById("color_box").style.backgroundColor = "rgb(" +R+ "," +G+ "," +B+ ")";
+            document.getElementById("BValue").value = B
+            document.getElementById("B_range").value = B
+            document.getElementById("display").innerHTML = "rgb(" +R+ "," +G+ "," +B+ ")";
+        }
+        function copyclipboard() 
+        {
+            var copy_value = document.getElementById("display")
+            navigator.clipboard.writeText(copy_value.textContent)   
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Color pallete</h1>
+        <div id="color_box">
+        </div>
+        <form>
+            Red <br>
+            0<input type="range" min="0" max="255" oninput="fn1(this.value)" value="255" id="R_range">255 <br>
+            <input type="number" name="RValue" id="RValue" value="255" min="0" max="255" oninput="fn1(this.value)" minlength="3"><br>
+            Green <br>
+            0<input type="range" min="0" max="255" oninput="fn2(this.value)" value="255" id="G_range">255 <br>
+            <input type="number" name="GValue" id="GValue" value="255" min="0" max="255" oninput="fn2(this.value)" minlength="3"><br>
+            Blue <br>
+            0<input type="range" min="0" max="255" oninput="fn3(this.value)" value="255" id="B_range">255 <br>
+            <input type="number" name="BValue" id="BValue" value="255" min="0" max="255" oninput="fn3(this.value)" minlength="3"><br>
+            <br><br><br>
+            <h3 id="display">rgb(255, 255, 255)</h3>
+        </form>
+        <button onclick="copyclipboard()">Click here to copy value</button>
+    </div>
+</body>
+</html>
